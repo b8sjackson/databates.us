@@ -46,7 +46,7 @@
       company_website: form.company_website.value
     };
     submit.disabled = true; submit.textContent = 'Sending';
-    fetch('/api/request', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+    fetch('/api/request/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
       .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, body: j }; }); })
       .then(function (res) {
         if (!res.ok) throw new Error(res.body && res.body.error ? res.body.error : 'bad');
