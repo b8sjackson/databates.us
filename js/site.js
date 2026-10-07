@@ -1,4 +1,34 @@
 (function () {
+  // Section addresses: /about/ serves the home page and scrolls to the About section.
+  var SECTIONS = ['tracker', 'why', 'who', 'products', 'how', 'memberships', 'about', 'questions', 'contact'];
+  function sectionFrom(path) {
+    var m = path.match(/^\/([a-z]+)\/?$/); return m && SECTIONS.indexOf(m[1]) >= 0 ? m[1] : null;
+  }
+  function headerOffset() { var h = document.querySelector('.header'); return h ? h.offsetHeight + 8 : 0; }
+  function jump(id, smooth) {
+    var el = document.getElementById(id); if (!el) return false;
+    var top = el.getBoundingClientRect().top + window.pageYOffset - headerOffset();
+    window.scrollTo({ top: top, behavior: smooth ? 'smooth' : 'auto' });
+    return true;
+  }
+  var here = sectionFrom(location.pathname);
+  if (here) {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    jump(here, false);
+    window.addEventListener('load', function () { jump(here, false); });
+  }
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest && ev.target.closest('a[href]'); if (!a) return;
+    var id = sectionFrom(a.getAttribute('href') || '');
+    if (!id || !document.getElementById(id)) return;
+    ev.preventDefault();
+    jump(id, true);
+    history.pushState(null, '', '/' + id + '/');
+  });
+  window.addEventListener('popstate', function () { var id = sectionFrom(location.pathname); if (id) jump(id, true); else if (location.pathname === '/') window.scrollTo({ top: 0 }); });
+})();
+
+(function () {
   var btn = document.querySelector('[data-menu]');
   var drawer = document.querySelector('[data-drawer]');
   if (btn && drawer) {
