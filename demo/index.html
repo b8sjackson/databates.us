@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CAS Status Tracker demo: DataBates</title>
+<meta name="description" content="A read-only demo of the DataBates Full web app. Made-up firm, made-up clients, real layout.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#24103f">
+<link rel="icon" href="/img/favicon-32.png" sizes="32x32">
+<link rel="icon" href="/img/Logo_Monogram.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
+<link rel="stylesheet" href="/demo/demo.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="/" title="Back to databates.us">
+      <img src="/img/Logo_Wordmark_White.svg" alt="DataBates" width="126" height="22">
+      <span class="brand__text"><b id="appName">CAS Status Tracker</b><span id="appSub">Full web app · Demo</span></span>
+    </a>
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button role="tab" data-view="dashboard" aria-selected="true">Dashboard</button>
+      <button role="tab" data-view="cas">Client status</button>
+      <button role="tab" data-view="calendar">Calendar</button>
+      <button role="tab" data-view="clients">Clients</button>
+      <button role="tab" data-view="automation">Automation <span class="tab-badge" id="queueBadge">3</span></button>
+    </nav>
+    <div class="user">
+      <span class="dot" title="Demo data loaded"></span>
+      <span class="user__who"><b id="userName">Avery Morgan</b><span>Viewer · demo</span></span>
+      <a class="btn btn--ghost btn--sm" href="/">Sign out</a>
+    </div>
+  </div>
+</header>
+
+<div class="banner" id="banner">
+  <div class="banner__inner">
+    <p><b>You are looking at the Full web app with editing turned off.</b> Every client, fee and task is made up. <span id="bannerPrice"></span></p>
+    <div class="banner__actions">
+      <a class="btn btn--sm" href="#missing" data-scroll="missing">What your copy adds</a>
+      <a class="btn btn--primary btn--sm" href="/request/">Request a quote</a>
+    </div>
+  </div>
+</div>
+
+<main class="page" id="page">
+
+<!-- Dashboard -->
+<section class="view active" id="view-dashboard">
+  <div class="view-head">
+    <div><h1>Department dashboard</h1><p>Every number follows the month you pick. Click a tile or a line to jump to that work.</p></div>
+    <div class="toolbar"><label>Due month <select id="dashMonth"></select></label></div>
+  </div>
+  <div class="tiles" id="dashTiles"></div>
+  <div class="grid grid--2">
+    <div class="card"><h3>Status this month</h3><div class="bars" id="dashStatus"></div></div>
+    <div class="card"><h3>Needs attention</h3><div class="attn" id="dashAttn"></div></div>
+    <div class="card card--wide"><h3>Workload by staff</h3><div class="tablewrap tablewrap--flat"><table class="summary" id="dashStaff"></table></div></div>
+    <div class="card"><h3>Work by service type</h3><div class="tablewrap tablewrap--flat"><table class="summary" id="dashService"></table></div></div>
+    <div class="card"><h3>Payroll this month</h3><div class="attn" id="dashPayroll"></div></div>
+  </div>
+  <p class="note">Tasks are generated from each client's recurring services, so a new month fills itself in. Quarter-end months run heavier because quarterly closes land on top of monthly ones.</p>
+</section>
+
+<!-- Client status -->
+<section class="view" id="view-cas">
+  <div class="view-head">
+    <div><h1>Client status</h1><p>Every recurring job: monthly closes, quarterly closes, sales tax, annual returns, advisory. Click a row to open it.</p></div>
+    <div class="toolbar"><button class="btn btn--toggle" id="casMine" aria-pressed="false">My work</button><button class="btn btn--primary" data-fake="add">+ Add task</button></div>
+  </div>
+  <div class="filters" id="casFilters"></div>
+  <div class="tablewrap"><table class="data" id="casTable"></table></div>
+  <p class="note" id="casCount"></p>
+</section>
+
+<!-- Calendar -->
+<section class="view" id="view-calendar">
+  <div class="view-head"><div><h1>Calendar</h1><p>Who is doing what, and when. Color is the owner. Red means overdue. Click any item to open it.</p></div></div>
+  <div class="cal-head">
+    <button class="btn btn--sm" id="calPrev" aria-label="Previous month">‹</button>
+    <h2 id="calTitle"></h2>
+    <button class="btn btn--sm" id="calNext" aria-label="Next month">›</button>
+    <button class="btn btn--sm btn--ghost" id="calToday">Today</button>
+    <label>Owner <select id="calOwner"></select></label>
+    <label>Show <select id="calKind"><option value="all">Everything</option><option value="cas">Client work only</option><option value="payroll">Payroll only</option></select></label>
+    <label class="check"><input type="checkbox" id="calDone"> include done</label>
+    <div class="legend" id="calLegend"></div>
+  </div>
+  <div class="cal" id="cal"></div>
+</section>
+
+<!-- Clients -->
+<section class="view" id="view-clients">
+  <div class="view-head">
+    <div><h1>Clients &amp; engagements</h1><p>One row per engagement: owner, fee, budgeted hours, engagement letter, bank access and risk. Fix the client once and every task follows.</p></div>
+    <div class="toolbar"><button class="btn btn--primary" data-fake="add">+ Add engagement</button></div>
+  </div>
+  <div class="filters" id="engFilters"></div>
+  <div class="tablewrap"><table class="data" id="engTable"></table></div>
+  <p class="note" id="engCount"></p>
+</section>
+
+<!-- Automation -->
+<section class="view" id="view-automation">
+  <div class="view-head"><div><h1>Automation</h1><p>How the tracker updates itself. People still have the final say: an agent proposes a change, and the queue below is where someone approves it.</p></div></div>
+
+  <div class="grid grid--2">
+    <div class="stack">
+      <div class="card">
+        <h3>Agent update mode</h3>
+        <div class="modes" id="modes">
+          <button class="mode" data-mode="manual"><b>Manual</b><span>Only people change the tracker. Agent suggestions sit in the queue for reference.</span></button>
+          <button class="mode is-on" data-mode="review"><b>Review</b><span>Agents post proposed updates. An admin approves each one before it changes a task.</span></button>
+          <button class="mode" data-mode="auto"><b>Auto</b><span>Agents write straight to tasks. Every change is logged and can be undone.</span></button>
+        </div>
+        <p class="note">Most firms start in Review and move to Auto once they trust the pattern.</p>
+      </div>
+      <div class="card">
+        <h3>Update queue <span class="h3-sub">from agents and connected systems</span></h3>
+        <div class="stack" id="queue"></div>
+      </div>
+      <div class="card">
+        <h3>Recent activity</h3>
+        <div class="hist" id="activity"></div>
+      </div>
+    </div>
+
+    <div class="stack">
+      <div class="card card--tint">
+        <h3>Workflows you can add</h3>
+        <p class="lead-sm">Each one plugs into this same tracker. Pick the ones that match how your firm already works.</p>
+        <div class="flows" id="flows"></div>
+        <div class="cta-row">
+          <a class="btn btn--primary" href="/request/">Ask about adding one</a>
+          <span class="note">Priced per workflow, or covered by a membership.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What your copy adds -->
+<section class="missing" id="missing">
+  <div class="card card--deep">
+    <h3>What this demo leaves out</h3>
+    <p class="lead-sm">This is the Full web app with the switches off. Your copy runs on your own private database and adds:</p>
+    <ul class="missing__list">
+      <li><b>Logins for your team.</b> Each person signs in with their firm email. Roles for staff, managers and admins.</li>
+      <li><b>Editing in the browser.</b> Status, hours, blockers and notes change right in the row, with history and undo.</li>
+      <li><b>An Admin tab.</b> People and roles, staff capacity, month rollover, backups and a one-click health check.</li>
+      <li><b>A Help guide.</b> Written for your firm, including the data contract for anyone building on it.</li>
+      <li><b>Your real client list.</b> Imported from your spreadsheet or task tool, then kept in good order.</li>
+    </ul>
+    <div class="cta-row">
+      <a class="btn btn--on-deep" href="/request/">Request a quote</a>
+      <a class="link-light" href="/#products">See every product</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Drawer -->
+<div class="drawer-bg" id="drawerBg" hidden></div>
+<aside class="drawer" id="drawer" hidden aria-label="Record">
+  <div class="drawer__head"><h2 id="dTitle"></h2><button class="btn btn--sm btn--ghost" id="dClose" aria-label="Close">✕</button></div>
+  <div class="drawer__body" id="dBody"></div>
+  <div class="drawer__foot"><button class="btn btn--primary" data-fake="save">Save changes</button><button class="btn" id="dClose2">Close</button></div>
+</aside>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="/demo/demo.js" defer></script>
+</body>
+</html>
