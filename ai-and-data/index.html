@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your data and AI, in plain terms: DataBates</title>
+<meta name="description" content="Where a client&#x27;s data lives, who can see it, where AI is involved and how a firm leaves.">
+<link rel="canonical" href="https://databates.us/ai-and-data/">
+<meta property="og:title" content="Your data and AI, in plain terms: DataBates">
+<meta property="og:description" content="Where a client&#x27;s data lives, who can see it, where AI is involved and how a firm leaves.">
+<meta property="og:url" content="https://databates.us/ai-and-data/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://databates.us/img/og.png">
+<meta name="theme-color" content="#faf8f3">
+<link rel="icon" href="/img/favicon-32.png" sizes="32x32">
+<link rel="icon" href="/img/Logo_Monogram.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
+<link rel="preload" href="/fonts/Tinos-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+
+</head>
+<body>
+<header class="header">
+  <div class="wrap header__inner">
+    <a href="/" aria-label="DataBates home"><img class="wordmark-img" src="/img/Logo_Wordmark_Royal.svg" alt="DataBates" width="152" height="26"></a>
+    <nav aria-label="Main"><ul class="nav"><li><a href="/#products">Products</a></li><li><a href="/#how">How it works</a></li><li><a href="/#about">About</a></li><li><a href="/#contact">Contact</a></li></ul></nav>
+    <div class="header__actions">
+      <a class="btn btn--primary btn--small" href="/request/">Request a quote</a>
+      <button class="btn btn--secondary btn--small menu-btn" type="button" aria-expanded="false" aria-controls="drawer" data-menu>Menu</button>
+    </div>
+  </div>
+  <nav class="drawer" id="drawer" aria-label="Main, phone" data-drawer>
+    <div class="wrap"><ul><li><a href="/#products">Products</a></li><li><a href="/#how">How it works</a></li><li><a href="/#about">About</a></li><li><a href="/#contact">Contact</a></li><li><a href="/request/">Request a quote</a></li></ul></div>
+  </nav>
+</header>
+
+<main id="main" class="page">
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">AI and data</p><h1 class="title">Your data and AI, in plain terms</h1><p class="lead">Your data stays yours. It sits in systems set up for your firm alone, and it is never used to train an AI model. This page shows where it lives, who can see it, where AI is involved and how you leave.</p></div>
+    <div class="prose" style="max-width:820px">
+      <h2>Where your data lives, by what you buy</h2>
+      <div class="frame" style="box-shadow:none;border-radius:var(--radius-md)"><div class="frame__scroll"><table class="tbl" style="min-width:600px">
+        <thead><tr><th>What you buy</th><th>Where your data sits</th><th>Where AI comes in</th></tr></thead>
+        <tbody>
+          <tr><td><b>Web dashboards and apps</b></td><td>A database set up for your firm alone. See the next section.</td><td>Used to build it. None inside it.</td></tr>
+          <tr><td><b>Excel trackers and models</b></td><td>Your workbook, on your systems. We keep a copy.</td><td>Used to build it. None inside it.</td></tr>
+          <tr><td><b>Automation and briefs</b></td><td>Your own systems, read by your firm's AI account, not ours.</td><td>Runs in your own AI account.</td></tr>
+          <tr><td><b>Advisory work</b></td><td>The files you send, in a private folder for your firm.</td><td>Drafts it. Figures cite sources.</td></tr>
+          <tr><td><b>Workshops</b></td><td>Nothing leaves your firm. We teach on made-up data.</td><td>Shown live, on made-up data.</td></tr>
+        </tbody></table></div></div>
+      <h2>Inside a web tool: three services, one job each</h2>
+      <div class="frame" style="box-shadow:none;border-radius:var(--radius-md)"><div class="frame__scroll"><table class="tbl" style="min-width:600px">
+        <thead><tr><th>Service</th><th>Its job</th><th>Holds your records?</th></tr></thead>
+        <tbody>
+          <tr><td><b>GitHub</b></td><td>Keeps the tool's code in a private repository.</td><td>No. Code only.</td></tr>
+          <tr><td><b>Vercel</b></td><td>Serves the tool's pages to your browser, encrypted.</td><td>No. Pages only.</td></tr>
+          <tr><td><b>Supabase</b></td><td>Runs the database and logins, on Amazon Web Services.</td><td>Yes. The one place they sit.</td></tr>
+        </tbody></table></div></div>
+      <ul style="margin-top:var(--s6)">
+        <li><b>One firm, one project,</b> in a North American data center region named in your Scope of Work.</li>
+        <li><b>Encrypted</b> in storage (AES-256) and in transit (TLS). Supabase and Vercel each hold a SOC 2 Type 2 report.</li>
+        <li><b>Firm logins only.</b> Only your firm's email addresses can sign up, and the database enforces each role.</li>
+        <li><b>Backed up</b> every day, with seven days kept. Your admins can also download a full copy at any time.</li>
+      </ul>
+      <h2>Who can see your data</h2>
+      <ul>
+        <li><b>Your people,</b> at the role your admins set, and <b>Jackson Bates of DataBates,</b> to build and support your tool.</li>
+        <li><b>The providers named on this page,</b> plus Google Drive and email (Apple iCloud Mail, Gmail) for the files and messages you send us.</li>
+        <li><b>No one else.</b> Your data, figures and names are never used for another client, in a demo or in marketing.</li>
+      </ul>
+      <h2>Where AI is involved, and where it is not</h2>
+      <ul>
+        <li><b>Building.</b> We use Claude, from Anthropic, to write code, load data and draft documents, so it reads the files you send us. Model training is off, and no other AI service touches your data without your written OK.</li>
+        <li><b>Inside a tracker or dashboard.</b> No AI. Risk flags and due dates come from fixed rules, not from a model.</li>
+        <li><b>Agents and briefs.</b> Optional. They run in your firm's own AI account. AI output is always a draft for your team to review.</li>
+      </ul>
+      <h2>Your part, and how you leave</h2>
+      <ul>
+        <li><b>What to send.</b> Only what the job needs: no Social Security numbers, bank details or tax returns unless the scope calls for them. Confirm any client consent your professional rules or tax law (Section 7216) require.</li>
+        <li><b>Export any time.</b> A full export of your data is yours on request, member or not.</li>
+        <li><b>Never locked out.</b> A partner at your firm holds a sealed admin login from the first day.</li>
+        <li><b>A clean handoff.</b> When a membership ends, we move the hosting, database and code to accounts you control, with the admin login, the Owner's Guide and a one-hour walkthrough.</li>
+        <li><b>Deleted on request, and told fast.</b> We delete our working files at the end of a project when you ask. If someone reaches your data in our care without permission, we tell you within three business days.</li>
+      </ul>
+    </div>
+    <p class="notice">A plain-English summary. Your signed agreements control. DataBates LLC is not a CPA firm, and nothing we deliver is an audit, a review, tax preparation or legal advice. Questions: hello@databates.us</p>
+  </div>
+</main>
+<footer class="footer" id="footer">
+  <div class="wrap">
+    <hr class="footer__rule">
+    <div class="footer__top">
+      <div>
+        <img src="/img/Logo_Wordmark_White.svg" alt="DataBates" width="140" height="24" style="display:block;height:24px;width:auto">
+        <p class="footer__tag">In good order.</p>
+      </div>
+      <div>
+        <ul class="footer__cols">
+          <li><a href="mailto:hello@databates.us">hello@databates.us</a></li>
+          <li>Norman, Oklahoma</li>
+          <li><a href="https://www.linkedin.com/in/jackson-b8s" rel="noopener" target="_blank">Jackson Bates on LinkedIn</a></li>
+        </ul>
+        <ul class="footer__cols" style="margin-top:12px">
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/ai-and-data/">AI and data</a></li>
+          <li><a href="/license/">License summary</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>DataBates LLC is not a CPA firm and does not provide audit, tax or attest services.</p>
+      <p>&copy; 2026 DataBates LLC, an Oklahoma limited liability company.</p>
+    </div>
+  </div>
+</footer>
+<script src="/js/site.js" defer></script>
+</body>
+</html>
