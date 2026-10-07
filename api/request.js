@@ -50,10 +50,20 @@ module.exports = async (req, res) => {
       '', 'Problem:', r.problem || '(not given)',
     ].join('\n');
     const first = r.name.split(/\s+/)[0] || 'there';
-    const send = (msg) => fetch('https://api.resend.com/emails', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + resend }, body: JSON.stringify(msg) }).catch(() => null);
+    // A failed email never fails the request: it is already stored. The failure is written to the
+    // Vercel log as a status and an error name only, so no visitor detail and no key lands there.
+    const send = async (label, msg) => {
+      try {
+        const out = await fetch('https://api.resend.com/emails', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + resend }, body: JSON.stringify(msg) });
+        if (!out.ok) {
+          const err = await out.json().catch(() => ({}));
+          console.error(`Email not sent (${label}): ${out.status} ${typeof err.name === 'string' ? err.name.slice(0, 60) : 'unknown'}`);
+        }
+      } catch (e) { console.error(`Email not sent (${label}): could not reach the mail service`); }
+    };
     await Promise.all([
-      send({ from, to: ['hello@databates.us'], reply_to: r.email, subject: `Quote request: ${r.firm}`, text: lines }),
-      send({ from, to: [r.email], subject: 'We received your request', text: `Hi ${first},\n\nThanks for reaching out to DataBates. Your request is in, and I will reply with a quote or a couple of questions.\n\nIf anything changes in the meantime, just reply to this email.\n\nJackson Bates\nDataBates LLC\njackson.bates@databates.us` }),
+      send('alert to hello@', { from, to: ['hello@databates.us'], reply_to: r.email, subject: `Quote request: ${r.firm}`, text: lines }),
+      send('reply to visitor', { from, to: [r.email], subject: 'We received your request', text: `Hi ${first},\n\nThanks for reaching out to DataBates. Your request is in, and I will reply with a quote or a couple of questions.\n\nIf anything changes in the meantime, just reply to this email.\n\nJackson Bates\nDataBates LLC\njackson.bates@databates.us` }),
     ]);
   }
   res.statusCode = 200; res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify({ ok: true }));
