@@ -7,7 +7,7 @@
   const CONFIG = {
     FIRM: 'Redbud Ledger Group',
     PRODUCT: 'Full web app',
-    PRICE_LINE: 'Your copy is the Full web app: a $4,000 product fee plus about 28 hours at our hourly rate, $9,600 typical, or $7,600 on a 12-month Care membership with hosting included.',
+    PRICE_LINE: 'Your copy is the Full web app: a $4,000 product fee plus about 15 hours at our hourly rate, $7,000 typical, or $5,000 on a 12-month Care membership with hosting included.',
     VIEWER: { initials: 'AM', name: 'Avery Morgan' },
     STAFF: [
       { initials: 'AM', name: 'Avery Morgan', capacity: 140 },
