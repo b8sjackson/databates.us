@@ -5,6 +5,10 @@
     {
       "source": "/:section(tracker|why|who|products|how|memberships|about|questions|contact)",
       "destination": "/"
+    },
+    {
+      "source": "/:section(tracker|why|who|products|how|memberships|about|questions|contact)/",
+      "destination": "/"
     }
   ],
   "headers": [
