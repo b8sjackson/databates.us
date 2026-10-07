@@ -1,0 +1,46 @@
+
+<main id="main" class="page">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Request a quote</p>
+      <h1 class="title">Tell us what you need.</h1>
+      <p class="lead">We will reply with a quote or a few questions. Nothing is charged here.</p>
+    </div>
+    <form class="form" id="request-form" method="post" action="/api/request" novalidate>
+      <div class="grid-2" style="gap:var(--s8)">
+        <div class="field"><label class="field__label" for="firm">Firm name</label><input class="input" id="firm" name="firm" type="text" required autocomplete="organization"></div>
+        <div class="field"><label class="field__label" for="name">Your name</label><input class="input" id="name" name="name" type="text" required autocomplete="name"></div>
+        <div class="field"><label class="field__label" for="role">Your role</label><p class="field__hint" id="role-hint">For example Partner, CAS manager, Firm administrator</p><input class="input" id="role" name="role" type="text" required autocomplete="organization-title" aria-describedby="role-hint"></div>
+        <div class="field"><label class="field__label" for="email">Work email</label><p class="field__hint" id="email-hint">We reply to this address</p><input class="input" id="email" name="email" type="email" required autocomplete="email" aria-describedby="email-hint"></div>
+        <div class="field"><label class="field__label" for="phone">Phone</label><p class="field__hint" id="phone-hint">We may call to talk through your request</p><input class="input" id="phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" aria-describedby="phone-hint"></div>
+        <div class="field"><label class="field__label" for="size">How many people work at your firm?</label><select class="input" id="size" name="size" required><option value="">Choose one</option><option>1 to 10</option><option>11 to 25</option><option>26 to 50</option><option>51 to 100</option><option>More than 100</option></select></div>
+      </div>
+      <fieldset class="field">
+        <legend class="field__label">What do you want help with?</legend>
+        <p class="field__hint">Pick any that apply.</p>
+        <ul style="list-style:none;margin:0;padding:0"><li><p class="eyebrow" style="margin:var(--s3) 0 var(--s2)">Trackers and dashboards</p><ul class="checks"><li class="check"><input type="checkbox" id="h00" name="help" value="A tracker in Excel"><label for="h00">A tracker in Excel</label></li><li class="check"><input type="checkbox" id="h01" name="help" value="A live web dashboard"><label for="h01">A live web dashboard</label></li><li class="check"><input type="checkbox" id="h02" name="help" value="A full web app with logins"><label for="h02">A full web app with logins</label></li></ul></li><li><p class="eyebrow" style="margin:var(--s3) 0 var(--s2)">Workflow automation</p><ul class="checks"><li class="check"><input type="checkbox" id="h10" name="help" value="Automated daily briefs for a person or a team"><label for="h10">Automated daily briefs for a person or a team</label></li><li class="check"><input type="checkbox" id="h11" name="help" value="AI workflows rolled out across the firm"><label for="h11">AI workflows rolled out across the firm</label></li><li class="check"><input type="checkbox" id="h12" name="help" value="Close or reconciliation automation"><label for="h12">Close or reconciliation automation</label></li><li class="check"><input type="checkbox" id="h13" name="help" value="An AI skill and prompt library"><label for="h13">An AI skill and prompt library</label></li></ul></li><li><p class="eyebrow" style="margin:var(--s3) 0 var(--s2)">Advisory</p><ul class="checks"><li class="check"><input type="checkbox" id="h20" name="help" value="A two-week review of where AI fits in our firm"><label for="h20">A two-week review of where AI fits in our firm</label></li><li class="check"><input type="checkbox" id="h21" name="help" value="A financial model"><label for="h21">A financial model</label></li><li class="check"><input type="checkbox" id="h22" name="help" value="Process and controls documentation"><label for="h22">Process and controls documentation</label></li><li class="check"><input type="checkbox" id="h23" name="help" value="Deal and negotiation strategy"><label for="h23">Deal and negotiation strategy</label></li></ul></li><li><p class="eyebrow" style="margin:var(--s3) 0 var(--s2)">Training</p><ul class="checks"><li class="check"><input type="checkbox" id="h30" name="help" value="A half-day workshop for our team"><label for="h30">A half-day workshop for our team</label></li><li class="check"><input type="checkbox" id="h31" name="help" value="A full-day workshop for our team"><label for="h31">A full-day workshop for our team</label></li></ul></li><li><p class="eyebrow" style="margin:var(--s3) 0 var(--s2)">Ongoing support</p><ul class="checks"><li class="check"><input type="checkbox" id="h40" name="help" value="A membership for upkeep and support"><label for="h40">A membership for upkeep and support</label></li></ul></li><li><p class="eyebrow" style="margin:var(--s3) 0 var(--s2)">Not sure</p><ul class="checks"><li class="check"><input type="checkbox" id="h50" name="help" value="Not sure yet. Advise me."><label for="h50">Not sure yet. Advise me.</label></li></ul></li></ul>
+        <p class="field__error" data-error="help" hidden>Pick at least one.</p>
+      </fieldset>
+      <fieldset class="field">
+        <legend class="field__label">How do you want it delivered?</legend>
+        <ul class="checks"><li class="check"><input type="radio" id="d0" name="delivery" value="Done for you" required><label for="d0">Done for you<small>we build it and hand it over</small></label></li><li class="check"><input type="radio" id="d1" name="delivery" value="Done with you" required><label for="d1">Done with you<small>we build it and coach your team</small></label></li><li class="check"><input type="radio" id="d2" name="delivery" value="Taught to you" required><label for="d2">Taught to you<small>we train your team to build it</small></label></li><li class="check"><input type="radio" id="d3" name="delivery" value="Not sure yet" required><label for="d3">Not sure yet</label></li></ul>
+      </fieldset>
+      <div class="field"><label class="field__label" for="start">When do you want to start?</label><select class="input" id="start" name="start" required><option value="">Choose one</option><option>As soon as possible</option><option>Within a month</option><option>Within three months</option><option>Just exploring</option></select></div>
+      <div class="field"><label class="field__label" for="problem">What is the problem you want solved? <span class="field__opt">(optional)</span></label><p class="field__hint" id="problem-hint">What is slow, manual or scattered today? A few sentences is plenty. Please do not include client names or client data.</p><textarea class="input" id="problem" name="problem" maxlength="1500" aria-describedby="problem-hint"></textarea></div>
+      <div class="field"><label class="field__label" for="source">How did you hear about DataBates?</label><select class="input" id="source" name="source"><option value="">Choose one</option><option>BKR conference</option><option>A referral</option><option>A university or professor</option><option>LinkedIn</option><option>Other</option></select></div>
+      <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="company_website" tabindex="-1" autocomplete="off"></label></div>
+      <div class="message message--error" data-form-error hidden></div>
+      <div>
+        <button class="btn btn--primary" type="submit" data-submit>Send request</button>
+        <p class="caption" style="margin-top:var(--s4)">We use what you send to reply to your request. We do not sell it. See our <a href="/privacy/">Privacy Notice</a>.</p>
+      </div>
+    </form>
+    <div class="done" data-done hidden>
+      <p class="eyebrow">Request received</p>
+      <h2 class="title">Thank you. Your request is in.</h2>
+      <p class="lead">Jackson Bates will reply from jackson.bates@databates.us.</p>
+      <div class="actions"><a class="link link--arrow" href="/">Back to the site</a></div>
+    </div>
+    <p class="notice">DataBates LLC is not a CPA firm and does not provide audit, tax or attest services.</p>
+  </div>
+</main>
