@@ -78,6 +78,9 @@ def head(title, desc, path, extra=""):
 <meta property="og:url" content="{canonical}">
 <meta property="og:type" content="website">
 <meta property="og:image" content="{SITE}/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#faf8f3">
 <link rel="icon" href="/img/favicon-32.png" sizes="32x32">
 <link rel="icon" href="/img/Logo_Monogram.svg" type="image/svg+xml">
